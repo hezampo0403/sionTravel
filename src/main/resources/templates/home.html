@@ -8,11 +8,11 @@
         <div class="container">
             <div class="row">
                 <div class="booking-form">
-                    <form th:action="@{/booking}" th:object="${reservas}" method="POST">
+                    <form th:action="@{/booking}" th:object="${booking}" method="POST">
                         <div class="form-group">
                             <div class="form-checkbox">
                                 <label for="roundtrip">
-                                    <input type="radio" id="roundtrip" th:field="*{tipo_reserva}" value="roundtrip" th:checked="checked">
+                                    <input type="radio" id="roundtrip" th:field="*{tipo_reserva}" value="roundtrip" checked="checked">
                                     <span></span>Roundtrip
                                 </label>
                                 <label for="one-way">
@@ -51,20 +51,20 @@
                             <div class="col-md-3" id="ocultar">
                                 <div class="form-group">
                                     <span class="form-label">Retorno</span>
-                                    <input class="form-control" type="date" th:field="*{fehca_llegada}" >
+                                    <input class="form-control" type="date" th:field="*{fecha_llegada}" >
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <span class="form-label">Adultos (10+)</span>
-                                    <input type="number" class="form-control" th:field="*{adulto_numero}" id="adultos" min="1">
+                                    <input type="number" class="form-control" th:field="*{adulto}" id="adultos" min="1">
                                     <span class="select-arrow"></span>
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <span class="form-label">Infantes (0-10)</span>
-                                    <input type="number" class="form-control" th:field="*{infante_numero}" id="dinfante" min="0">
+                                    <input type="number" class="form-control" th:field="*{infante}" id="dinfante" min="0">
                                     <span class="select-arrow"></span>
                                 </div>
                             </div>

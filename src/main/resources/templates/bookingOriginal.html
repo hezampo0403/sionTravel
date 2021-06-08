@@ -42,76 +42,77 @@
 
     <div class="row">
         <div class="col-3">
-
             <table class="table table-bordered table-hover" >
                 <thead>
                 <tr>
                     <th>Ciudad de Origen</th>
-                    <td th:text="${booking.areas_from.nombre}"></td>
+                    <td th:text="${reservas.areas_from.nombre}"></td>
                 </tr>
                 <tr>
                     <th>Ciudad de Destino</th>
-                    <td th:text="${booking.areas_to.nombre}"></td>
+                    <td th:text="${reservas.areas_to.nombre}"></td>
                 </tr>
                 <tr>
                     <th>Fecha de Salida</th>
-                    <td th:text="${booking.fecha_salida}"></td>
+                    <td th:text="${reservas.fecha_salida}"></td>
                 </tr>
                 <tr>
                     <th>Fecha de Retorno</th>
-                    <td th:text="${booking.fecha_llegada}"></td>
+                    <td th:text="${reservas.fehca_llegada}"></td>
                 </tr>
                 <tr>
                     <th>Adultos</th>
-                    <td th:text="${booking.adulto}"></td>
+                    <td th:text="${reservas.adulto_numero}"></td>
                 </tr>
                 <tr>
                     <th>Infantes</th>
-                    <td th:text="${booking.infante}"></td>
+                    <td th:text="${reservas.infante_numero}"></td>
                 </tr>
                 </thead>
             </table>
         </div>
         <div class="col-9">
+            <i>
+               viaje de <b> <font th:text="${reservas.areas_from.nombre}"></font></b> con ciudad de destino <b> <font th:text="${reservas.areas_to.nombre}"></font></b>
+            </i>
             <form th:action="@{/confirm}" th:object="${reservas}" method="POST">
-                <i>
-                    viaje de <b> <font th:text="${booking.areas_from.nombre}"></font></b> con ciudad de destino <b> <font th:text="${booking.areas_to.nombre}"></font></b>
-                </i>
 
-                <div class="card mb-2" th:each="onewey:${onewaytrip}">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col">
-                                <input type="radio" th:field="*{id_bus}" th:value="${onewey.id_bus}" style="float: right">
 
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                Origen: <i th:text="${booking.areas_from.nombre}"></i> <br>
-                                Direccion: <i th:text="${booking.areas_from.direccion}"></i>
-                            </div>
-                            <div class="col">
-                                Destino: <i th:text="${booking.areas_to.nombre}"></i> <br>
-                                Direccion: <i th:text="${booking.areas_to.direccion}"></i>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col punteado-top">
-                                Hora de Salida : <i th:text="${onewey.hora_salida}"></i>
-                            </div>
-                            <div class="col punteado-top">
-                                Hora de Llegada : <i th:text="${onewey.hora_llegada}"></i>
-                                <h5 style="float: right">$ <span class="badge bg-primary" th:text="${#numbers.formatDecimal(onewey.precio_adulto, 0, 'COMMA', 0, 'POINT')}"></span></h5>
-                                <input type="hidden" th:field="*{id_ruta}" th:value="${onewey.id_ruta}">
-                            </div>
-                        </div>
+            <div class="card mb-2" th:each="onewey:${onewaytrip}">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <input type="radio" th:field="*{id_bus}" th:value="${onewey.id_bus}" style="float: right">
 
+                        </div>
                     </div>
-                </div>
+                    <div class="row">
+                        <div class="col">
+                            Origen: <i th:text="${reservas.areas_from.nombre}"></i> <br>
+                            Direccion: <i th:text="${reservas.areas_from.direccion}"></i>
+                        </div>
+                        <div class="col">
+                            Destino: <i th:text="${reservas.areas_to.nombre}"></i> <br>
+                            Direccion: <i th:text="${reservas.areas_to.direccion}"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col punteado-top">
+                            Hora de Salida : <i th:text="${onewey.hora_salida}"></i>
+                        </div>
+                        <div class="col punteado-top">
+                            Hora de Llegada : <i th:text="${onewey.hora_llegada}"></i>
+                            <h5 style="float: right">$ <span class="badge bg-primary" th:text="${#numbers.formatDecimal(onewey.precio_adulto, 0, 'COMMA', 0, 'POINT')}"></span></h5>
+                            <input type="hidden" th:field="*{id_ruta}" th:value="${onewey.id_ruta}">
+                        </div>
+                    </div>
 
-                <i>
-                    viaje de <b> <font th:text="${booking.areas_to.nombre}"></font></b> con ciudad de destino <b> <font th:text="${booking.areas_from.nombre}"></font></b>
+                </div>
+            </div>
+
+            <!--ROUNDTRIP-->
+                <i class="mt-4">
+                    viaje de <b> <font th:text="${reservas.areas_to.nombre}"></font></b> con ciudad de destino <b> <font th:text="${reservas.areas_from.nombre}"></font></b>
                 </i>
                 <div class="card mb-2" th:each="round:${roundtrip}">
                     <div class="card-body">
@@ -123,12 +124,12 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                Origen: <i th:text="${booking.areas_to.nombre}"></i> <br>
-                                Direccion: <i th:text="${booking.areas_to.direccion}"></i>
+                                Origen: <i th:text="${reservas.areas_to.nombre}"></i> <br>
+                                Direccion: <i th:text="${reservas.areas_to.direccion}"></i>
                             </div>
                             <div class="col">
-                                Destino: <i th:text="${booking.areas_from.nombre}"></i> <br>
-                                Direccion: <i th:text="${booking.areas_from.direccion}"></i>
+                                Destino: <i th:text="${reservas.areas_from.nombre}"></i> <br>
+                                Direccion: <i th:text="${reservas.areas_from.direccion}"></i>
                             </div>
                         </div>
                         <div class="row">
@@ -143,7 +144,9 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="row mb-lg-5">
+                    <input class="btn btn-success" type="submit" value="Booking">
+                </div>
             </form>
         </div>
 

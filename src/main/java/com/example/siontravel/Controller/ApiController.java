@@ -34,7 +34,7 @@ public class ApiController {
 
     @GetMapping("/getAreas")
     public List<Areas> getAreas(){
-        List<Areas>listadoAreas =  areasInterfacesServices.listar();
+        List<Areas>listadoAreas = areasInterfacesServices.listar();
         return listadoAreas;
     }
 

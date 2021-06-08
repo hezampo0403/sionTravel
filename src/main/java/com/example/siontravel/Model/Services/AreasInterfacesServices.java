@@ -10,4 +10,6 @@ public interface AreasInterfacesServices {
     public Areas buscarById(int id);
     public void eliminar(int id);
     public List listaRutas (int id);
+    public List oneWayTrip(int id_from, int id_to, String fecha_salida);
+    public List roundTrip(int id_from, int id_to, String fecha_llegada);
 }
